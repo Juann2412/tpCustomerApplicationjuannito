@@ -16,24 +16,29 @@ import md.juannito.tpcustomerapplicationjuannito.session.CustomerManager;
 /**
  * Backing bean de la page CustomerList.xhtml.
  */
-@Named(value = "customerMBean")  
-@ViewScoped  
-public class CustomerMBean implements Serializable {  
-  private List<Customer> customerList;  
+@Named(value = "customerMBean")
+@ViewScoped
+public class CustomerMBean implements Serializable {
+  private List<Customer> customers;
 
   @EJB
-  private CustomerManager customerManager;  
-        
-  public CustomerMBean() {  }  
-        
+  private CustomerManager customerManager;
+
+  /**
+   * Creates a new instance of CustomerMBean
+   */
+  public CustomerMBean() {
+  }
+
   /** 
-   * Retourne la liste des clients pour affichage dans une DataTable 
-   * @return 
-   */  
+  * Renvoie la liste des clients pour affichage dans une DataTable 
+  * @return 
+  */  
   public List<Customer> getCustomers() {
-    if (customerList == null) {
-      customerList = customerManager.getAllCustomers();
+    if (customers == null) {
+      customers = customerManager.getAllCustomers();
     }
-    return customerList;
+    return customers;  
   }  
+  
 }
