@@ -4,37 +4,33 @@
  */
 package md.juannito.tpcustomerapplicationjuannito.session;
 
-import javax.ejb.Stateless;
-import md.juannito.tpcustomerapplicationjuannito.entities.Customer;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import md.juannito.tpcustomerapplicationjuannito.entities.DiscountCode;
 
 /**
  *
  * @author ASUS ROG
  */
 @Stateless
-public class CustomerManager {
+public class DiscountCodeManager {
 
     @PersistenceContext(unitName = "customerPU")
     private EntityManager em;
 
-    public List<Customer> getAllCustomers() {
-        Query query = em.createNamedQuery("Customer.findAll");
+    public List<DiscountCode> getAllDiscountCodes() {
+        Query query = em.createNamedQuery("DiscountCode.findAll");
         return query.getResultList();
     }
 
-    public Customer update(Customer customer) {
-        return em.merge(customer);
+    public DiscountCode findById(String discountCode) {
+        return em.find(DiscountCode.class, discountCode);
     }
 
-    public void persist(Customer customer) {
-        em.persist(customer);
-    }
-
-    public Customer getCustomer(int idCustomer) {
-        return em.find(Customer.class, idCustomer);
+    public void persist(DiscountCode discountCode) {
+        em.persist(discountCode);
     }
 }
